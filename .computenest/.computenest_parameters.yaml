@@ -2,11 +2,11 @@ RuntimeType: Container
 ServiceType: private
 ArtifactSourceType: DockerCompose
 ServiceBuildRegion: ap-southeast-1
-RepoName: aliyun-computenest/appsmith
+RepoName: JJGGu/appsmith
 DockerComposeEnvPath: .env
 RegionId: cn-hangzhou
 CustomParameters: ''
 DockerComposeYamlPath: docker-compose.yml
-Owner: linziqiaolzq
+Owner: JJGGu
 Branch: main
 Platform: github

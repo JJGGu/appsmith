@@ -56,17 +56,17 @@ Artifact:
     ArtifactBuildProperty:
       CodeRepo:
         Platform: github
-        Owner: linziqiaolzq
-        RepoName: aliyun-computenest/appsmith
+        Owner: JJGGu
+        RepoName: JJGGu/appsmith
         Branch: main
       RegionId: ap-southeast-1
       CommandType: RunShellScript
       CommandContent: |-
         mkdir -p /root/application
-        if [ -e "/root/code/.env" ]; then cp -r "/root/code/.env" "/root/application/"; fi
-        if [ -e "/root/code/docker-compose.yml" ]; then cp -r "/root/code/docker-compose.yml" "/root/application/"; fi
         if [ -e "/root/code/stacks" ]; then cp -r "/root/code/stacks" "/root/application/"; fi
+        if [ -e "/root/code/docker-compose.yml" ]; then cp -r "/root/code/docker-compose.yml" "/root/application/"; fi
+        if [ -e "/root/code/.env" ]; then cp -r "/root/code/.env" "/root/application/"; fi
         cd /root/application
         sed -i 's/pull_policy: always/pull_policy: if_not_present/g' docker-compose.yml
-        docker compose -f docker-compose.yml build
-        docker compose -f docker-compose.yml pull || true;
+        docker compose -f docker-compose.yml build 
+        docker compose -f docker-compose.yml pull 2>&1 | stdbuf -oL grep -viE 'Downloading|sha256|extracting|KiB|Downloaded' || true;
